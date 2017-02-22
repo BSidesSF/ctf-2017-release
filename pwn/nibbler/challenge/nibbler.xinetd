@@ -1,0 +1,12 @@
+service nibbler
+{
+    protocol       = tcp
+    disable        = no
+    port           = 1338
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf
+    server         = /home/ctf/nibbler
+    type           = UNLISTED
+}

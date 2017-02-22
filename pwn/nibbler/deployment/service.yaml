@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nibbler
+  labels:
+    app: nibbler
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 1338
+        targetPort: 1338
+  selector:
+    app: nibbler

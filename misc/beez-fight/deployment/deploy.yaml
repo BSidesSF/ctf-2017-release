@@ -1,0 +1,19 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: beez-fight
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: beez-fight
+    spec:
+      containers:
+      - name: beez-fight
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/beez-fight
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 666

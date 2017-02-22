@@ -1,0 +1,12 @@
+service beez-fight
+{
+    protocol       = tcp
+    disable        = no
+    port           = 666
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf 
+    server         = /home/ctf/game.rb
+    type           = UNLISTED
+}

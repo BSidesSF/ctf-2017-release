@@ -1,0 +1,86 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: steel-mountain-interface
+spec:  # v1beta1.DeploymentSpec
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: steel-mountain-interface
+        group: steel-mountain
+    spec:  # v1.PodSpec
+      containers:
+      - name: interface
+        image: gcr.io/bsides-sf-ctf-2017/steel-mountain-interface
+        ports:
+        - containerPort: 443
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100M
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: steel-mountain-sensor
+spec:  # v1beta1.DeploymentSpec
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: steel-mountain-sensor
+        group: steel-mountain
+    spec:  # v1.PodSpec
+      containers:
+      - name: sensor
+        image: gcr.io/bsides-sf-ctf-2017/steel-mountain-sensor
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100M
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: steel-mountain-setpoint
+spec:  # v1beta1.DeploymentSpec
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: steel-mountain-setpoint
+        group: steel-mountain
+    spec:  # v1.PodSpec
+      containers:
+      - name: setpoint
+        image: gcr.io/bsides-sf-ctf-2017/steel-mountain-setpoint
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100M
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}

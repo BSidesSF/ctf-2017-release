@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: the-year-2000
+  annotations:
+    service.beta.kubernetes.io/external-traffic: "OnlyLocal"
+  labels:
+    app: the-year-2000
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 80
+        targetPort: 80
+  selector:
+    # This should match the app name above
+    app: the-year-2000

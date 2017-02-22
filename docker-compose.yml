@@ -1,0 +1,79 @@
+# Our problems. You can easily test these by running:
+# `docker-compose build && docker-compose up -d`
+
+# Web Challengs
+zumbo:
+  build: ./web/zumbo/challenge/service
+  links: ["zumbo-vault:vault"]
+  ports: ["8000:5000"]
+
+zumbo-vault:
+  build: ./web/zumbo/challenge/vault
+
+delphi-status:
+  build: ./web/delphi-status/challenge
+  ports:
+    - 8001:8080
+
+easyauth:
+  build: ./web/easyauth/challenge
+  ports:
+    - 8002:80
+
+year-2000:
+  build: ./web/the-year-2000/challenge
+  ports:
+    - 8003:80
+
+# Pwn problems
+shortest:
+  build: ./pwn/i-am-the-shortest/challenge
+  ports:
+    - 9000:8890
+
+b64:
+  build: ./pwn/b-64-b-tuff/challenge
+  ports:
+    - 9001:5757
+
+byteme:
+  build: ./pwn/byteme/challenge
+  ports:
+    - 9002:1942
+
+easyshell:
+  build: ./pwn/easyshell/challenge
+  ports:
+    - 9003:5252
+
+easyshell64:
+  build: ./pwn/easyshell64/challenge
+  ports:
+    - 9004:5253
+
+hashecute:
+  build: ./pwn/hashecute/challenge
+  ports:
+    - 9005:2525
+
+nibbler:
+  build: ./pwn/nibbler/challenge
+  ports:
+    - 9006:1338
+
+# Crypto Challenges
+vhash:
+  build: ./crypto/vhash/challenge
+  ports:
+    - 8004:80
+
+vhash-fixed:
+  build: ./crypto/vhash-fixed/challenge
+  ports:
+    - 8005:80
+
+# Misc Challenges
+beez-fight:
+  build: ./misc/beez-fight/challenge
+  ports:
+    - 9007:666

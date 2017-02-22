@@ -1,0 +1,77 @@
+diff --git a/Demo.rb b/Demo.rb
+index d38db66..27f6e73 100644
+--- a/Demo.rb
++++ b/Demo.rb
+@@ -14,25 +14,25 @@ require './Poracle'
+ BLOCKSIZE = 16
+ 
+ poracle = Poracle.new(BLOCKSIZE, true) do |data|
+-  url = "http://localhost:20222/decrypt/#{data.unpack('H*').pop()}"
++  url = "http://localhost:20221/decrypt/#{data.unpack('H*').pop()}"
+   result = HTTParty.get(url)
+ 
+   # Return
+   result.parsed_response !~ /Fail/
+ end
+ 
+-data = HTTParty.get("http://localhost:20222/encrypt").parsed_response
+-print "Trying to decrypt: %s" % data
+-
+-result = poracle.decrypt([data].pack('H*'))
+-puts("-----------------------------")
+-puts("Decryption result")
+-puts("-----------------------------")
+-puts result
+-puts("-----------------------------")
+-puts()
+-
+-data = "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents."
++#data = HTTParty.get("http://localhost:20221/encrypt").parsed_response
++#print "Trying to decrypt: %s" % data
++#
++#result = poracle.decrypt([data].pack('H*'))
++#puts("-----------------------------")
++#puts("Decryption result")
++#puts("-----------------------------")
++#puts result
++#puts("-----------------------------")
++#puts()
++
++data = "FLAG:1d010f248d"
+ print "Trying to encrypt: %s" % data
+ result = poracle.encrypt(data)
+ 
+diff --git a/Poracle.rb b/Poracle.rb
+index 2054431..65c6e5c 100644
+--- a/Poracle.rb
++++ b/Poracle.rb
+@@ -261,7 +261,7 @@ class Poracle
+     data_blocks = data.unpack("a#{@blocksize}" * blockcount)
+ 
+     # The 'final' block can be defaulted to anything
+-    last_block = (0...@blocksize).map { rand(255).chr() }.join
++    last_block = 'HiddenCiphertext'
+     result = last_block
+     data_blocks.reverse().each do |b|
+       last_block = _get_block_encrypt(b, last_block)
+diff --git a/RemoteTestServer.rb b/RemoteTestServer.rb
+index b843473..7e3f69a 100644
+--- a/RemoteTestServer.rb
++++ b/RemoteTestServer.rb
+@@ -15,7 +15,7 @@ require 'base64'
+ require 'openssl'
+ require 'sinatra'
+ 
+-set :port, 20222
++set :port, 20221
+ 
+ # Note: Don't actually generate keys like this!
+ KEY = (1..32).map{rand(255).chr}.join
+@@ -38,6 +38,7 @@ get(/\/decrypt\/([a-fA-F0-9]+)$/) do |data|
+     result = c.update(data)
+     result += c.final
+ 
++    puts("KEY: %s" % KEY.unpack("H*"))
+     puts("Result: \"%s\"" % result.unpack('H*'))
+ 
+     puts('SUCCESS')

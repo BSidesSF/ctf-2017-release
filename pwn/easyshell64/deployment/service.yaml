@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: easyshell64
+  labels:
+    app: easyshell64
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 5253
+        targetPort: 5253
+  selector:
+    app: easyshell64

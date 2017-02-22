@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: b-64-b-tuff-service
+  labels:
+    app: b-64-b-tuff
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 5757
+        targetPort: 5757
+  selector:
+    # This should match the app name above
+    app: b-64-b-tuff

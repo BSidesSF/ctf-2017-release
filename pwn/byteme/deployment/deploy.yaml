@@ -1,0 +1,25 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: byteme
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: byteme
+    spec:
+      containers:
+      - name: byteme
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/byteme
+        ports:
+          - containerPort: 1942
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}

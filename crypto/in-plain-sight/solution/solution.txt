@@ -1,0 +1,18 @@
+2.3.0 :001 > require 'openssl'
+ => true
+
+2.3.0 :002 > c = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+ => #<OpenSSL::Cipher::Cipher:0x00000000a042b8>
+
+2.3.0 :003 > c.decrypt
+ => #<OpenSSL::Cipher::Cipher:0x00000000a042b8>
+
+2.3.0 :004 > c.key = ['c086e08ad8ee0ebe7c2320099cfec9eea9a346a108570a4f6494cfe7c2a30ee1'].pack("H*")
+ => "\xC0\x86\xE0\x8A\xD8\xEE\x0E\xBE|# \t\x9C\xFE\xC9\xEE\xA9\xA3F\xA1\bW\nOd\x94\xCF\xE7\xC2\xA3\x0E\xE1"
+
+2.3.0 :005 > c.iv = ['0a0e176722a95a623f47fa17f02cc16a'].pack('H*')
+ => "\n\x0E\x17g\"\xA9Zb?G\xFA\x17\xF0,\xC1j"
+
+2.3.0 :006 > c.update('HiddenCiphertext') + c.final()
+ => "FLAG:1d010f248d"
+

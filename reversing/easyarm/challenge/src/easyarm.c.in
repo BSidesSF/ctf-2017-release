@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <unistd.h>
+
+void fail() {
+  printf("Sorry, that's not the right flag.\n");
+  _exit(1);
+}
+
+int checkflag(char **argv) {
+  %%MAGIC%%
+  return 0;
+}
+
+int main(int argc, char **argv) {
+  if (argc != 2) fail();
+  if (checkflag(argv)) fail();
+  printf("Congratulations, you have found the flag.\n");
+  _exit(0);
+}

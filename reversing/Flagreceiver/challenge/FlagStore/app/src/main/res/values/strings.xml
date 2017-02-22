@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FlagStore</string>
+    <string name="android.permission._msg">Msg permission for this app</string>
+    <string name="passphrase">LetMeIn</string>
+    <string name="str1">OsjPwhj</string>
+    <string name="str2">QklEsu</string>
+    <string name="str3"></string>
+</resources>

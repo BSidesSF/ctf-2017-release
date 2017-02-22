@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: beez-fight
+  labels:
+    app: beez-fight
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 666
+        targetPort: 666
+  selector:
+    app: beez-fight

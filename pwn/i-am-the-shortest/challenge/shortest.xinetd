@@ -1,0 +1,13 @@
+service shortest
+{
+    protocol       = tcp
+    disable        = no
+    port           = 8890
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf
+    server         = /usr/bin/timeout
+    server_args    = 10 /home/ctf/shortest
+    type           = UNLISTED
+}

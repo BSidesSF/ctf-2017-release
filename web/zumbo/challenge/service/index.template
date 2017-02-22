@@ -1,0 +1,82 @@
+<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+<p id=rot> </p>
+<p id=main>
+Welcome to <span class='fancy'>Zumbo Dot Com</span>
+</p>
+
+<p>
+You can do <span id='spinner'>Anything</span> At Zumbo Dot Com.
+</p>
+
+<p>
+This site has been visited {{counter}} times.
+</p>
+
+<style>
+body {
+  text-align: center;
+  font-size: 50px;
+}
+.fancy {
+ font-family: 'Bungee Shade', cursive;
+ animation-duration: 2s;
+ animation-name: slide;
+ animation-iteration-count: infinite;
+ animation-direction: alternate;
+ position: relative;
+ animation-timing-function: ease;
+}
+
+@keyframes slide{
+    0%   {color:red; top: 0px;}
+    100% {color:yellow; top: 50px;}
+}
+#spinner {
+ font-family: 'Bungee Shade', cursive;
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+  transform-style: preserve-3d;
+  text-align: center;
+  font-size: 50px;
+  display: block;
+}
+#spinner:after,
+#spinner:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: translateZ(3px);
+}
+#spinner:before {
+  transform:translateZ(-3px);
+}
+@keyframes spinner {
+  from {
+    transform: rotateY(0deg);
+    color: cyan;
+  }
+  to {
+    transform: rotateY(-360deg);
+    color: magenta;
+  }
+}
+#main {
+ font-family: Verdana, 'Sans-Serif';
+ font-size: 100px;
+}
+
+
+</style>
+<script>
+function randcol() { return '#'+Math.random().toString(16).slice(-6); }
+function color() {
+   col = randcol();
+   document.body.style.backgroundColor = col;
+   setTimeout(color, 5000);
+}
+color();
+</script>

@@ -1,0 +1,12 @@
+service hashecute
+{
+    protocol       = tcp
+    disable        = no
+    port           = 2525
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf
+    server         = /home/ctf/hashecute
+    type           = UNLISTED
+}

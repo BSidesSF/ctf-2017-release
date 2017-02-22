@@ -1,0 +1,13 @@
+service b-64-b-tuff
+{
+    protocol       = tcp
+    disable        = no
+    port           = 5757
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf
+    server         = /usr/bin/timeout
+    server_args    = 10 /home/ctf/b-64-b-tuff
+    type           = UNLISTED
+}

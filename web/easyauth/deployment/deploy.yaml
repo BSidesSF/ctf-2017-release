@@ -1,0 +1,19 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: easyauth
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: easyauth
+    spec:
+      containers:
+      - name: easyauth
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/easyauth
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 80

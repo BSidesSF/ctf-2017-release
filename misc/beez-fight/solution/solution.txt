@@ -1,0 +1,8 @@
+A programmatic solution isn't really necessary.
+
+To solve the problem, basically:
+* Play fair long enough to get a higher-valued weapon/armour
+* Go to the store
+* Unequip the item (31337 / value) times
+* Sell the item (31337 / value) times
+* Buy the flag

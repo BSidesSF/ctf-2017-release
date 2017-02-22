@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: steel-mountain-setpoint
+  labels:
+    app: steel-mountain-setpoint
+    group: steel-mountain
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: steel-mountain-setpoint

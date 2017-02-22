@@ -1,0 +1,13 @@
+service byteme
+{
+    protocol       = tcp
+    disable        = no
+    port           = 1942
+    flags          = REUSE
+    socket_type    = stream
+    wait           = no
+    user           = ctf
+    server         = /usr/bin/timeout
+    server_args    = 10 /home/ctf/byteme.lua
+    type           = UNLISTED
+}

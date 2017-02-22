@@ -1,0 +1,2 @@
+Disallow: /firmware
+Disallow: /flag.txt

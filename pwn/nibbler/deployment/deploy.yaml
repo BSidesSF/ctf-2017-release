@@ -1,0 +1,26 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nibbler
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nibbler
+    spec:
+      containers:
+      - name: nibbler
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/nibbler
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 1338
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}

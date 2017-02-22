@@ -1,0 +1,57 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zumbo-vault
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: zumbo-vault
+        tier: backend
+    spec:
+      containers:
+      - name: zumbo-vault
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/zumbo-vault
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 8080
+        env:
+          - name: flag
+            value: "FLAG: RUNNER_ON_SECOND_BASE"
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zumbo
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: zumbo
+        tier: frontend
+    spec:
+      containers:
+      - name: zumbo
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/zumbo
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 5000
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}

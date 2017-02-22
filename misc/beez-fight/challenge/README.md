@@ -1,0 +1,1 @@
+Vulnerability: When items are un-equipped, their equip status is set to 'false' and they aren't allowed to use them and they aren't displayed. But we don't do the same check for un-equipping items, which means they can be un-equipped multiple times and therefore duplicated!

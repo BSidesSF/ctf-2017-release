@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: i-am-the-shortest-service
+  labels:
+    app: i-am-the-shortest
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 8890
+        targetPort: 8890
+  selector:
+    # This should match the app name above
+    app: i-am-the-shortest

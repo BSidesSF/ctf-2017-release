@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: easyshell
+  labels:
+    app: easyshell
+spec:
+  type: LoadBalancer
+  ports:
+      - port: 5252
+        targetPort: 5252
+  selector:
+    app: easyshell

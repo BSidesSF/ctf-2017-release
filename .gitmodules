@@ -1,0 +1,3 @@
+[submodule "websploit/challenge/cgic"]
+	path = pwn/steel-mountain/challenge/cgic
+	url = https://github.com/boutell/cgic.git

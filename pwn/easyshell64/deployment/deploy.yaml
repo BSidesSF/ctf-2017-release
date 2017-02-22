@@ -1,0 +1,26 @@
+# Define which containers to run
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: easyshell64
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: easyshell64
+    spec:
+      containers:
+      - name: easyshell64
+        # This should be the same container tag as created by the Makefile
+        image: gcr.io/bsides-sf-ctf-2017/easyshell64
+        ports:
+          # This is the port that the container exposes
+          - containerPort: 5253
+        volumeMounts:
+          - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+            name: no-api-access-please
+            readOnly: true
+      volumes:
+        - name: no-api-access-please
+          emptyDir: {}
