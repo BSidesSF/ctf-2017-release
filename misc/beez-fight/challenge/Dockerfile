@@ -1,4 +1,4 @@
-FROM ruby:2.3-onbuild
+FROM ruby:2.3
 
 RUN apt-get update && apt-get install -y xinetd
 RUN adduser --disabled-password --gecos '' ctf
