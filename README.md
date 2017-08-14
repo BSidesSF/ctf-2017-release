@@ -93,8 +93,7 @@ This repo has a VM that allows you to run the docker containers. To get started:
 Here be dragons! Most of the CTF infrastructure was run on kubernetes. While it certainly made deploying and maintaining our challenges simple, there are many reasons why
 docker and kubernetes might not be a good choice for CTF challenges.
 
-We wrote a blog post about some potential security issues when using this platform, one of these issues is unfixed in this repository. Please take a look before reusing the
-infrastructure configs as-is.
+We wrote a blog post about some potential security issues when using this platform, one of these issues is unfixed in this repository. Please take a look before reusing the infrastructure configs as-is.
 https://hackernoon.com/capturing-all-the-flags-in-bsidessf-ctf-by-pwning-our-infrastructure-3570b99b4dd0
 
 Any questions? Feel free to open an issue or reach out on twitter.
