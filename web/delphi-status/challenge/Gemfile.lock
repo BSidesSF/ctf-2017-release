@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     openssl (2.0.0.beta.2)
-    rack (1.6.0)
+    rack (1.6.11)
     rack-protection (1.5.3)
       rack
     sinatra (1.4.5)
